@@ -6,23 +6,43 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <script>
+        function Validate(event) {
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+
+            if (name == '' || password == '') {
+                alert('Empty fields not allowed');
+                event.preventDefault();
+                return;
+            }
+
+            if (!/^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password)) {
+                alert('Password must be at least 8 characters and include both letters and numbers.');
+                event.preventDefault();
+                return;
+            } else {
+                alert('Valid');
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
+        <form onsubmit="return Validate(event)">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="userName" required>
+                <input type="text" placeholder="userName" id="name" name="name" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="password" required>
+                <input type="password" placeholder="password"  id="password" name="pw" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
             <div class="box">
                <input type="checkbox">
-               <label for="Remember-me">Rememebr me</label>  
+               <label for="Remember-me">Remember me</label>  
                <a href="#">Forget password?</a>
             </div>
 
